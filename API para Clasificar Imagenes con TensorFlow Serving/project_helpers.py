@@ -20,7 +20,7 @@ for i in range(5):
 
 from PIL import Image
 
-def resize_and_convert_to_grayscale(image_path, target_size=(28, 28)):
+def resize_and_convert_to_grayscale(image_path, target_size=(32, 32),color=False):
     try:
         # Open the image file
         image = Image.open(image_path)
@@ -28,11 +28,12 @@ def resize_and_convert_to_grayscale(image_path, target_size=(28, 28)):
         # Resize the image to the target size (28x28)
         image = image.resize(target_size, Image.ANTIALIAS)
 
-        # Convert the image to grayscale (L mode)
-        image = image.convert("L")
+        if(not color):
+            # Convert the image to grayscale (L mode)
+            image = image.convert("L")
 
         # Save the resized and grayscale image
-        save_path = image_path.replace("xd.jpg", "_resized.png")  # Modify the filename as needed
+        save_path = image_path.replace("caballo.jpg", "_resized.png")  # Modify the filename as needed
         image.save(save_path)
 
         return save_path
@@ -41,8 +42,8 @@ def resize_and_convert_to_grayscale(image_path, target_size=(28, 28)):
         print("Error:", str(e))
         return None
 
-input_image_path = "uploads/xd.jpg"
-output_image_path = resize_and_convert_to_grayscale(input_image_path)
+input_image_path = "uploads/caballo.jpg"
+output_image_path = resize_and_convert_to_grayscale(input_image_path,color=True)
 
 if output_image_path:
     print(f"Image resized and converted. Saved as {output_image_path}")
